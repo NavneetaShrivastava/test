@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome 
+                    Welcome to Reseller dashboard
                 </div>
 
                 <div class="links">
