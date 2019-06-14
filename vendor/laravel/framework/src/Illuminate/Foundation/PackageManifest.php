@@ -119,7 +119,7 @@ class PackageManifest
         $ignoreAll = in_array('*', $ignore = $this->packagesToIgnore());
 
         $this->write(collect($packages)->mapWithKeys(function ($package) {
-            return [$this->format($package['name']) => $package['extra']['laravel'] ?? []];
+            return [$this->format($package['name']) => $package['extra']['Reseller Dashboard'] ?? []];
         })->each(function ($configuration) use (&$ignore) {
             $ignore = array_merge($ignore, $configuration['dont-discover'] ?? []);
         })->reject(function ($configuration, $package) use ($ignore, $ignoreAll) {
@@ -151,7 +151,7 @@ class PackageManifest
 
         return json_decode(file_get_contents(
             $this->basePath.'/composer.json'
-        ), true)['extra']['laravel']['dont-discover'] ?? [];
+        ), true)['extra']['Reseller Dashboard']['dont-discover'] ?? [];
     }
 
     /**
