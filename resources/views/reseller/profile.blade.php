@@ -26,7 +26,7 @@ $id = $_GET['id'];
                    
                     if(Auth::user()->type == '2'){
                         ?>
-                  <form method="post" action="" enctype="multipart/form-data">
+                  <form method="post" action="profile/update" enctype="multipart/form-data">
                        {{ csrf_field() }}
                         <h4 class="page-heading">Create New User</h4>
                         <div class="form-group">

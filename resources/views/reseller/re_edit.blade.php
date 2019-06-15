@@ -18,16 +18,13 @@ $id = $_GET['id'];
                     <?php
                     $users = DB::table('users')->get();
                     $columns = Schema::getColumnListing('users');
-  
-                    
-                
-                    if(Auth::user()->type == '2' && $id != 0){
+                    if( $id != 0){
                         
                         $user = DB::table('users')->where('id', $id)->first();
                         $columns = Schema::getColumnListing('users');
-                        
+                       
                         ?>
-                        <form method="post" action="" enctype="multipart/form-data">
+                        <form method="post" action="re_edit/update/{{$id}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                          <h4 class="page-heading">Edit User</h4>
                          <div class="form-group">
@@ -53,12 +50,7 @@ $id = $_GET['id'];
                          <?php
                     }
                     
-              ?>
-                   
-                    
-
-                    
-                
+              ?> 
             
         </div>
     </div>

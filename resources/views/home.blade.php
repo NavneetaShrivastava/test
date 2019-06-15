@@ -14,22 +14,22 @@
                 @if (Auth::user()->type == '2')
                 <ul>
                         <li>
-                            Edit Profile
+                        <a href="{{route('re_edit', ['id' => Auth::user()->id])}}">   Edit Profile </a>
                         </li>
                         <li>
-                            <a href="{{route('profile')}}"> All Reseller</a>
+                            <a href="{{route('all_reseller')}}"> All Reseller</a>
                         </li>
                         <li>
-                            All Buildings
+                        <a href="{{route('admin.buildings.index')}}">  All Buildings </a>
                         </li>
                     </ul> 
                 @else
                     <ul>
                         <li>
-                            Edit Profile
+                        <a href="{{route('re_edit', ['id' => Auth::user()->id])}}">  Edit Profile </a>
                         </li>
                         <li>
-                            All Customer
+                        <a href="{{route('customers')}}">   All Customer </a>
                         </li>
                         <li>
                             History
@@ -78,17 +78,7 @@
                     $users = DB::table('users')->get();
                     $columns = Schema::getColumnListing('users');
                     //var_dump($columns[1]);
-                    
-                    if(Auth::user()->type == '2'){
-                        ?>
-                    @foreach ($users as $user)
-                        @if ($user->type == '1')
-                    <a href="{{route('re_edit', ['id'=>$user->id])}} ">{{ $user->name }}</a>
-                    <br/>
-                    @endif
-                @endforeach
-              <?php
-                    }else{
+                 
                        
                        $user = DB::table('users')->where('id', Auth::user()->id)->first();
                         $columns = Schema::getColumnListing('users');
@@ -107,19 +97,19 @@
                               </div>
                               
                              <div class="col-9">
-                             <input type="text" class="form-control" value="{{$user->$col}}" name="{{$user->$col}}"/>
+                             <input type="text" class="form-control home" value="{{$user->$col}}" name="{{$user->$col}}" disabled/>
                              </div>
                             
                          </div>
                        
                          @endforeach
                          </div>
-                         <input type="submit" class="btn btn-primary m-4" value="Update">
+                         <a href="{{route('re_edit', ['id' => Auth::user()->id])}}" class="btn btn-primary m-4"> Update Profile </a>
                          <a class="btn btn-primary m-4" href="{{ URL::previous() }}">Back </a>
                          </form>
                           
 <?php
-                    }
+                    
               ?>
                     </form>
                     
@@ -130,4 +120,5 @@
         </div>
     </div>
 </div>
+
 @endsection

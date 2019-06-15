@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
-
+use  App\Http\Controllers\controller;
 class ProfileController extends Controller
 {
     /**
@@ -46,7 +46,7 @@ public function store(Request $request)
    ]);
 
    $new_user = new User();
-   $new_user::find(2);
+
    $new_user->name = $request->input('name');
    $new_user->email = $request->input('email');
    $new_user->password =Hash::make($request['password']) ;

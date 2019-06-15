@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\controller;
 
 class Re_editController extends Controller
 {
@@ -29,29 +30,29 @@ class Re_editController extends Controller
     {
         return view('re_edit');
     }
-    public function update(Request $request, User $id)
+
+    protected function validator(array $data)
     {
-        die($id);
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255','unique:buildings'],
+            'email' => ['required', 'string', 'max:255'],
+           
+        ]);
+    }
+
+    public function update(Request $request, User $users, $id)
+    {
+        $instance = static::firstOrNew($users);
+
+        $instance->fill($request)->save();
+
+        // User::whereId($id)->update($request->all());
         
-       $this->validate($request,[
-           'name' => 'required',
-           'email' => 'required',
-           'password' => 'required'
-    
-          
-       ]);
-    
-       $new_user = User::find($id);
-      
-       $new_user->name = $request->input('name');
-       $new_user->email = $request->input('email');
-       $new_user->password =Hash::make($request['password']) ;
-      
-       $new_user->save();
-    
-        return redirect('/home');
+       return redirect()->route('home');
        
     }
+
+ 
 
    
 }

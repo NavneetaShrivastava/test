@@ -24,9 +24,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::get('/re_edit', 'Re_editController@index')->name('re_edit');
-Route::post('/re_edit', 'Re_editController@update')->name('re_edit');
-Route::post('/profile', 'ProfileController@store');
+Route::post('/re_edit/update/{id}', 'Re_editController@update')->name('re_update');
 
 
-Route::get('/all_reseller', 'All_resellerController@index');
+
+Route::get('/all_reseller', 'All_resellerController@index')->name('all_reseller');
+
+Route::get('/customers', 'CustomersController@index')->name('customers');
+Route::post('/profile/update', 'ProfileController@store')->name('profile_add');
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
+    Route::resource('buildings','Admin\BuildingsController');
+});
+
+
+
+
+
+
+
+
 
