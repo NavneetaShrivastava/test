@@ -64,6 +64,12 @@
             // $url = action('BuildingsController@create','{{$building->id}}');
             ?>
                 <a href="{{route('admin.buildings.edit', $building->id)}}">Edit</a>
+                <form action="{{route('admin.buildings.destroy', $building->id)}}" method="post">
+              {{method_field('delete')}}
+              <input type="hidden" value="{{ csrf_token() }}" name="_token">
+                    <input type="submit" class="btn btn-danger btn-sm" value="Delete" onclick="return confirm('Are you sure')">
+                </form>
+                
                 
             </div>
             

@@ -117,8 +117,10 @@ class BuildingsController extends Controller
      * @param  \App\buildings  $buildings
      * @return \Illuminate\Http\Response
      */
-    public function destroy(buildings $buildings)
+    public function destroy(buildings $buildings, $id)
     {
-        //
+        Buildings::whereId($id)->delete();
+        return redirect()->route('home');
+        
     }
 }
